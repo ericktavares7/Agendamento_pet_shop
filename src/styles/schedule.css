@@ -1,0 +1,129 @@
+.schedule-period {
+
+  background: var(--bg-secondary);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-primary);
+  overflow: hidden;
+  margin-bottom: .75rem;
+  width: 100%;
+}
+
+.schedule-period_header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.schedule-period_icon{
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.schedule-period_name{
+  font-family: var(--ff-title);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--content-primary);
+  flex: 1;
+}
+
+.schedule-period_time{
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--content-secondary);
+  line-height: 1.5rem;
+}
+
+.period{
+  list-style: none;
+}
+
+.appointment{
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: background 0.2s ease;
+  cursor: default;
+}
+
+.appointment:first-child{
+  border-top: none;
+}
+
+.appointment:hover{
+  background: var(--bg-hover);
+}
+
+.appointment_header{
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.appointment_time{
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--content-primary);
+  min-width: 2.75rem;
+}
+
+.appointment_pet{
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--content-primary);
+}
+
+.appointment_separator{
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--content-secondary);
+}
+
+.appointment_owner{
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--content-secondary);
+}
+
+.appointment_body{
+  padding-left: 0;
+}
+
+.appointment_service{
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--content-secondary);
+}
+
+.appointment_footer{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.25rem;  
+}
+
+.appointment_remove{
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--content-secondary);
+  text-decoration: none;
+  opacity: 1;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+  .schedule {
+    grid-area: schedule;
+    padding: 1.5rem;
+  }
+
+  .schedule>header {
+    flex-direction: column;
+  }
+}
