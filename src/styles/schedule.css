@@ -117,6 +117,30 @@
   cursor: pointer;
 }
 
+.new-appointment{
+  display: flex;
+  align-items: center;  
+  justify-content: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.new-appointment-btn{
+  background: var(--content-brand);
+  color: #050505;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.new-appointment-btn:active{
+  transform: scale(0.97);
+} 
+
 @media (max-width: 1100px) {
   .schedule {
     grid-area: schedule;
