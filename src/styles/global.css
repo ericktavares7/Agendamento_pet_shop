@@ -10,6 +10,7 @@
   --content-primary: #FFFFFF;
   --content-secondary: #98959D;
   --content-brand: #9282FA;
+  --content-brand-hover: #BDB4FA;
 
   --background-primary: #151515;
   --background-secondary: #1E1E24;
@@ -41,7 +42,7 @@ body {
   padding: 0.75rem 1.25rem; /* 12px 20px */
   border-radius: 0 0 0.75rem 0; /* 12px */
   
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 1000; /* para garantir que fique acima de outros elementos */
@@ -147,11 +148,10 @@ strong{
 /* MEDIA QUERY - DESKTOP (1100px) */
 @media (min-width: 68.75rem) { /* 1100px / 16 = 68.75rem */
   .container {
-    display: grid;
-    grid-template-columns: 30rem 1fr; /* 480px fixos para o form */
-    gap: 3.75rem; /* 60px */
-    padding: 6.25rem 2.5rem 2.5rem; /* 100px 40px 40px */
-    max-width: 90rem; /* 1440px */
+    display: flex;
+    gap: 3.57rem;
+    padding: 6.25rem 2.5rem 2.5rem; 
+    max-width: 75rem; /* Centraliza o conteúdo com uma largura máxima agradável */
     margin: 0 auto;
   }
 
@@ -166,6 +166,17 @@ strong{
 
   .logo__title {
     font-size: 1.25rem; /* 20px */
+  }
+
+  .header-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  .input-wrapper {
+    margin: 0; /* Tira o margin-auto do mobile */
   }
 }
 

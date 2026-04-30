@@ -16,13 +16,13 @@
   border-bottom: 1px solid var(--border-primary);
 }
 
-.schedule-period_icon{
+.schedule-period_icon {
   width: 1.25rem;
   height: 1.25rem;
   flex-shrink: 0;
 }
 
-.schedule-period_name{
+.schedule-period_name {
   font-family: var(--ff-title);
   font-size: 1rem;
   font-weight: 700;
@@ -30,18 +30,18 @@
   flex: 1;
 }
 
-.schedule-period_time{
+.schedule-period_time {
   font-size: 1rem;
   font-weight: 700;
   color: var(--content-secondary);
   line-height: 1.5rem;
 }
 
-.period{
+.period {
   list-style: none;
 }
 
-.appointment{
+.appointment {
   padding: 1rem 1.25rem;
   border-top: 1px solid var(--border-primary);
   display: flex;
@@ -51,63 +51,63 @@
   cursor: default;
 }
 
-.appointment:first-child{
+.appointment:first-child {
   border-top: none;
 }
 
-.appointment:hover{
+.appointment:hover {
   background: var(--bg-hover);
 }
 
-.appointment_header{
+.appointment_header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
 
-.appointment_time{
+.appointment_time {
   font-size: 1rem;
   font-weight: 700;
   color: var(--content-primary);
   min-width: 2.75rem;
 }
 
-.appointment_pet{
+.appointment_pet {
   font-size: 0.875rem;
   font-weight: 700;
   color: var(--content-primary);
 }
 
-.appointment_separator{
+.appointment_separator {
   font-size: 0.875rem;
   font-weight: 400;
   color: var(--content-secondary);
 }
 
-.appointment_owner{
+.appointment_owner {
   font-size: 0.85rem;
   font-weight: 400;
   color: var(--content-secondary);
 }
 
-.appointment_body{
+.appointment_body {
   padding-left: 0;
 }
 
-.appointment_service{
+.appointment_service {
   font-size: 0.85rem;
   font-weight: 400;
   color: var(--content-secondary);
 }
 
-.appointment_footer{
+.appointment_footer {
   display: flex;
   justify-content: flex-end;
-  margin-top: 0.25rem;  
+  margin-top: 0.25rem;
 }
 
-.appointment_remove{
+.appointment_remove {
   font-size: 0.75rem;
   font-weight: 400;
   color: var(--content-secondary);
@@ -117,15 +117,19 @@
   cursor: pointer;
 }
 
-.new-appointment{
+.appointment_remove:hover {
+  color: #EB5757;
+}
+
+.new-appointment {
   display: flex;
-  align-items: center;  
+  align-items: center;
   justify-content: center;
   padding: 2rem 0;
   width: 100%;
 }
 
-.new-appointment-btn{
+.new-appointment-btn {
   background: var(--content-brand);
   color: #050505;
   text-transform: uppercase;
@@ -137,17 +141,45 @@
   cursor: pointer;
 }
 
-.new-appointment-btn:active{
+.new-appointment-btn:active {
   transform: scale(0.97);
-} 
+}
 
-@media (max-width: 1100px) {
-  .schedule {
-    grid-area: schedule;
-    padding: 1.5rem;
+@media (min-width: 68.75rem) {
+
+
+  .appointment {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .schedule>header {
-    flex-direction: column;
+  .appointment_header {
+    flex: 1;
+    /* Empurra o resto para a direita */
   }
+
+  .appointment_body {
+    flex: 1;
+    text-align: left;
+  }
+
+  .appointment_footer {
+    margin-top: 0;
+  }
+
+  /* O botão sai do fluxo normal e fica flutuando na tela */
+  .new-appointment {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    width: auto;
+    padding: 0;
+    z-index: 1000;
+  }
+
+  .new-appointment-btn {
+    box-shadow: 0 10px 20px rgba(146, 130, 250, 0.3);
+  }
+
 }
