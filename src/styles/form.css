@@ -1,3 +1,23 @@
+.form-wrapper {
+  display: none;
+  /* Começa escondido em todo lugar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Quando o JS adicionar essa classe, ele aparece */
+.form-wrapper.active {
+  display: flex;
+}
+
+
 .form {
   grid-area: form;
   max-width: 512px;
@@ -14,17 +34,17 @@
   overflow-y: scroll;
 }
 
-.form > header {
+.form>header {
   max-width: 21rem;
   margin-bottom: 1.5rem;
 }
 
-.form > header h1 {
+.form>header h1 {
   font-size: 1.5rem;
   font-weight: 700;
 }
 
-.form > header p {
+.form>header p {
   color: #98959d;
   font-size: 0.87rem;
 }
@@ -81,6 +101,13 @@
   cursor: pointer;
 
   transition: background-color 0.3s;
+}
+
+.input-icon,
+.dropdown-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
 }
 
 .button:hover {
@@ -146,9 +173,25 @@
   color: #b8952e;
 }
 
-@media (max-width: 1100px) {
+@media (min-width: 68.75rem) {
+
   .form {
-    overflow-y: auto;
-    max-width: 100%;
+    align-items: flex-end;
+    max-width: 35rem;
+  }
+
+  .form>header,
+  .label,
+  .input {
+    align-self: stretch;
+    /* Garante que os outros itens continuem ocupando a largura toda */
+  }
+
+  .button {
+    width: auto;
+    padding: 1rem 2.5rem;
+    margin-top: 1.5rem;
+    align-self: flex-end;
+    /* Botão Agendar no canto direito */
   }
 }
