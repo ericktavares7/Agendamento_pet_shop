@@ -130,6 +130,8 @@
   width: 1.25rem;
   height: 1.25rem;
   flex-shrink: 0;
+
+  pointer-events: none;
 }
 
 .button:hover {
@@ -143,16 +145,6 @@
 }
 
 .hours {
-  list-style: none;
-
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-
-  margin-bottom: 2rem;
-}
-
-.hour {
   width: 4.87rem;
   height: 2.5rem;
 
@@ -168,54 +160,41 @@
   align-items: center;
 }
 
-.hour-period {
-  width: 100%;
-  color: #98959d;
-  font-size: 0.87rem;
-
-  margin-top: 0.75rem;
-}
-
-.hour-available {
-  background-color: #2e2c30;
-}
-
-.hour-unavailable {
-  opacity: 0.5;
-
-  cursor: not-allowed;
-}
-
-.hour-selected {
-  border: 1px solid #b8952e;
-  color: #b8952e;
-}
-
-.hour:not(.hour-unavailable):hover {
-  border: 1px solid #b8952e;
-  color: #b8952e;
-}
-
 .select-field {
+  flex: 1;
   width: 100%;
   background: transparent;
   border: none;
-  color: var(--content-primary);
   outline: none;
+
+  color: var(--content-primary);
   font-family: var(--paragraph);
   font-size: 1rem;
   cursor: pointer;
+
+  position: relative;
+  z-index: 1;
+
   appearance: none;
+  --webkit-appearance: none;
+
+  padding-right: 1.5rem;
 }
 
 .select-field option {
-  background-color: var(--background-secondary);
+  background-color: #232225;
   /* Evita fundo branco no tema dark */
-  color: var(--content-primary);
+  color: #ffffff;
+}
+
+.input:has(.select-field) {
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 #date-container,
-#hour-container {
+#hours-container {
   position: relative;
   cursor: pointer;
 }
@@ -232,11 +211,6 @@
   cursor: pointer;
 }
 
-/* Garante que o input de texto não bloqueie o clique no helper */
-#date-select,
-#hour-select {
-  pointer-events: none;
-}
 
 @media (min-width: 68.75rem) {
 

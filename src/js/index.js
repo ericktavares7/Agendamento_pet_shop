@@ -13,7 +13,7 @@ const dateContainer = document.getElementById('date-container');
 const dateSelect = document.getElementById('date-select');
 const hiddenDate = document.getElementById('hidden-date');
 
-const hourSelect = document.getElementById('hour-select');
+const hoursSelect = document.getElementById('hours-select');
 
 
 hiddenDate.addEventListener('change', () => {
@@ -29,6 +29,13 @@ dateContainer.addEventListener('click', () => hiddenDate.showPicker());
 
 // Função para carregar os horários disponíveis
 function preencherHorarios() {
+  console.log("Tentando preencher horários...");
+
+  if (!hoursSelect) {
+    console.error("ERRO: O elemento #hours-select não foi encontrado no HTML.");
+    return;
+  }
+
   const horarios = [
     '09:00', '10:00', '11:00', '12:00',
     '13:00', '14:00', '15:00', '16:00',
@@ -36,17 +43,26 @@ function preencherHorarios() {
   ];
 
   // Limpar opções anteriores
-  hourSelect.innerHTML = '<option value="">Selecione um horário</option>';
+  hoursSelect.innerHTML = '<option value="">Selecione um horário</option>';
 
   horarios.forEach(horario => {
     const option = document.createElement('option');
     option.value = horario;
     option.textContent = horario;
-    hourSelect.appendChild(option);
+    hoursSelect.appendChild(option);
   });
+
+  console.log("Horários preenchidos com sucesso!");
 }
 
-preencherHorarios();
+document.addEventListener('DOMContentLoaded', () => {
+    preencherHorarios();
+
+    const hoje = dayjs().format('YYYY-MM-DD');
+    if(dateSelect) dateSelect.placeholder = hoje;
+});
+
+
 
 BtnCancelar.addEventListener('click', () => {
   modalWrapper.classList.remove('active');
@@ -70,7 +86,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 });
-
-const hoje = dayjs().format('DD/MM/YYYY');
-
 

@@ -156,10 +156,10 @@
           <div class="input">
             <!-- O select tem o fundo invisível e herda a cor do .input -->
             <select id="service" name="service" class="select-field" required>
-              <option>Selecione um serviço</option>
-              <option>Banho e Tosa</option>
-              <option>Consulta Veterinária</option>
-              <option>Vacinação</option>
+              <option value="" disabled selected>Selecione um serviço</option>
+              <option value="Banho e Tosa">Banho e Tosa</option>
+              <option value="Consulta Veterinária">Consulta Veterinária</option>
+              <option value="Vacinação">Vacinação</option>
             </select>
           </div>
 
@@ -172,14 +172,15 @@
             <img src="./assets/icons/arrow-down.svg" alt="ícone de seta para baixo" class="dropdown-icon">
           </div>
 
-          <!-- HORÁRIOS (Usando as suas classes de hour) -->
+          <!-- HORÁRIOS (Usando as suas classes de hours) -->
           <label for="hours-select" class="label">Horários Disponíveis</label>
           <div class="input">
             <img src="./assets/icons/Clock-Circle--Streamline-Solar.svg" alt="ícone de relógio" class="input-icon">
+
            <select id="hours-select" name="hours" class="select-field" required>
-            <option value="">Selecione um horário</option>
+            <option value="" disabled selected>Selecione um horário</option>
              <!-- As opções de horário serão preenchidas dinamicamente via JavaScript -->
-           </select>
+           </select>  
             <img src="./assets/icons/arrow-down.svg" alt="ícone de seta para baixo" class="dropdown-icon">
           </div>
 
