@@ -63,6 +63,11 @@
 }
 
 .input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+
   width: 100%;
   height: 3rem;
 
@@ -95,7 +100,7 @@
   border: 1.5px solid #b8952e;
 }
 
-.form-actions{
+.form-actions {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -129,6 +134,7 @@
 
 .button:hover {
   background-color: var(--content-brand-hover);
+  transform: scale(1.02);
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -190,6 +196,48 @@
   color: #b8952e;
 }
 
+.select-field {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--content-primary);
+  outline: none;
+  font-family: var(--paragraph);
+  font-size: 1rem;
+  cursor: pointer;
+  appearance: none;
+}
+
+.select-field option {
+  background-color: var(--background-secondary);
+  /* Evita fundo branco no tema dark */
+  color: var(--content-primary);
+}
+
+#date-container,
+#hour-container {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Classe para os inputs de data/hora que ficam por trás do texto */
+.input-helper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  /* Invisível mas clicável */
+  cursor: pointer;
+}
+
+/* Garante que o input de texto não bloqueie o clique no helper */
+#date-select,
+#hour-select {
+  pointer-events: none;
+}
+
 @media (min-width: 68.75rem) {
 
   .form {
@@ -198,24 +246,21 @@
     padding: 4rem;
   }
 
-.form-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centraliza os filhos horizontalmente */
-  width: 100%;
-  margin-top: 2rem;
-  gap: 1rem;
-}
-
-  .button{
-    background-color: var(--content-brand);
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centraliza os filhos horizontalmente */
+    width: 100%;
+    margin-top: 2rem;
+    gap: 1rem;
   }
 
-#appointment-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  #appointment-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   .form>header,
   .label,
@@ -225,11 +270,28 @@
   }
 
   .button {
-    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--content-brand);
+
+    width: 100%;
     min-width: 160px;
     padding: 1rem 2.5rem;
     margin-top: 1.5rem;
-    align-self: flex-end;
+    align-self: stretch;
     /* Botão Agendar no canto direito */
   }
+
+  .button-cancel {
+    background: transparent;
+    color: var(--content-secondary);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .button-cancel:hover {
+  color: var(--content-brand-hover);
+  text-decoration: underline;
+}
 }

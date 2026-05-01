@@ -134,38 +134,41 @@
           <!-- NOME DO TUTOR -->
           <label for="owner" class="label">Nome do Tutor</label>
           <div class="input">
-            <input type="text" id="owner" name="owner" placeholder="Ex: Fernanda Costa" required>
+            <img src="./assets/icons/User--Streamline-Solar.svg" alt="ícone de usuário" class="input-icon">
+            <input type="text" id="owner" name="owner" placeholder="Fernanda Costa" required> 
           </div>
 
           <!-- NOME DO PET -->
           <label for="pet" class="label">Nome do Pet</label>
           <div class="input">
-            <input type="text" id="pet" name="pet" placeholder="Ex: Thor" required>
+            <img src="./assets/icons/Pet-Paw--Streamline-Core.svg" alt="ícone de cachorro" class="input-icon">
+            <input type="text" id="pet" name="pet" placeholder="Thor" required> 
           </div>
-
+          
           <label for="contact" class="label">Telefone</label>
           <div class="input">
-            <input type="text" id="contact" name="contact" placeholder="Ex: (11) 91234-5678" required>
+            <img src="./assets/icons/Phone--Streamline-Solar.svg" alt="ícone de telefone" class="input-icon">
+            <input type="text" id="contact" name="contact" placeholder="(11) 91234-5678" required> 
           </div>
 
           <!-- SERVIÇO -->
           <label for="service" class="label">Serviço</label>
           <div class="input">
             <!-- O select tem o fundo invisível e herda a cor do .input -->
-            <select id="service" name="service" required
-              style="width: 100%; background: transparent; border: none; color: var(--content-primary); outline: none; font-family: var(--paragraph); font-size: 1rem;">
-              <option value="" style="color: #000;">Selecione um serviço</option>
-              <option value="banho-tosa" style="color: #000;">Banho e Tosa</option>
-              <option value="consulta" style="color: #000;">Consulta Veterinária</option>
-              <option value="vacinacao" style="color: #000;">Vacinação</option>
+            <select id="service" name="service" class="select-field" required>
+              <option>Selecione um serviço</option>
+              <option>Banho e Tosa</option>
+              <option>Consulta Veterinária</option>
+              <option>Vacinação</option>
             </select>
           </div>
 
           <label for="date" class="label">Data</label>
-          <div class="input">
+          <div class="input" id="date-container">
             <img src="./assets/icons/Calendar-Minimalistic--Streamline-Solar.svg" alt="ícone de calendário"
               class="input-icon">
             <input type="text" id="date-select" name="date" placeholder="10/04/2026" readonly required>
+            <input type="date" id="hidden-date" name="hidden-date" class="input-helper" aria-label="Selecionar data para o agendamento">
             <img src="./assets/icons/arrow-down.svg" alt="ícone de seta para baixo" class="dropdown-icon">
           </div>
 
@@ -173,7 +176,10 @@
           <label for="hours-select" class="label">Horários Disponíveis</label>
           <div class="input">
             <img src="./assets/icons/Clock-Circle--Streamline-Solar.svg" alt="ícone de relógio" class="input-icon">
-            <input type="text" id="hour-select" name="hours" placeholder="12:00" readonly required>
+           <select id="hours-select" name="hours" class="select-field" required>
+            <option value="">Selecione um horário</option>
+             <!-- As opções de horário serão preenchidas dinamicamente via JavaScript -->
+           </select>
             <img src="./assets/icons/arrow-down.svg" alt="ícone de seta para baixo" class="dropdown-icon">
           </div>
 
