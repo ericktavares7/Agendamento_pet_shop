@@ -51,7 +51,7 @@ Git
 
 Instalação
 bash# Clone o repositório
-git clone https://github.com/seu-usuario/nome-do-repo.git
+git clone https://ericktavares7.github.io/Agendamento_pet_shop/
 
 # Entre na pasta
 cd nome-do-repo
