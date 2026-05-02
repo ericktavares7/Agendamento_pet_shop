@@ -1,5 +1,6 @@
 import '../styles/main.css';
 import dayjs from 'dayjs';
+import VMasker from 'vanilla-masker';
 
 /**
  * SELETORES
@@ -367,6 +368,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Renderiza os agendamentos do dia atual ao carregar
   renderizarAgendamentos(hojeISO());
+
+  const inputTelefone = document.getElementById('contact');
+  VMasker(inputTelefone).maskPattern('(99) 9 9999-9999');
 
   console.log('🐾 PetShop Agenda inicializado!');
 });
