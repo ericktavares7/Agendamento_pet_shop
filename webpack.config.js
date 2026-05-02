@@ -6,13 +6,11 @@ module.exports = {
   target: 'web',
   mode: 'development',
 
-  // 1. Ajuste o Entry Point conforme sua nova estrutura (src/js/index.js)
   entry: path.resolve(__dirname, "src", "js", "index.js"),
 
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "docs"),
-    // Se for usar GitHub Pages, mantenha o nome do repositório aqui
     publicPath: "./"
   },
 
@@ -35,7 +33,7 @@ module.exports = {
       patterns: [
         {
           from: path.resolve(__dirname, "src", "assets", "icons"),
-          to: path.resolve(__dirname, "dist", "assets", "icons") // ← adicione /icons aqui
+          to: path.resolve(__dirname, "docs", "assets", "icons")
         }
       ]
     }),
@@ -57,12 +55,11 @@ module.exports = {
           }
         }
       },
-      // 3. Regra essencial para os ícones SVG e imagens aparecerem
+
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
-          // Isso mantém a pasta e o nome original dentro do dist
           filename: 'assets/icons/[name][ext]'
         }
       },
