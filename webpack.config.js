@@ -11,7 +11,7 @@ module.exports = {
 
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "docs"),
     // Se for usar GitHub Pages, mantenha o nome do repositório aqui
     publicPath: "./"
   },
