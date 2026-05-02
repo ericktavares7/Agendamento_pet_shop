@@ -54,7 +54,7 @@ bash# Clone o repositório
 git clone https://ericktavares7.github.io/Agendamento_pet_shop/
 
 # Entre na pasta
-cd nome-do-repo
+cd Agendamento_pet_shop
 
 # Instale as dependências
 npm install
