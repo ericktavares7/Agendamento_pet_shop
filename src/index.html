@@ -29,10 +29,14 @@
         <p class="header_subtitle">Aqui você pode ver todos os clientes e serviços agendados para hoje.</p>
       </div>
 
-      <div class="input-wrapper">
+      <div class="input-wrapper" id="main-date-wrapper" >
         <img src="./assets/icons/Calendar-Minimalistic--Streamline-Solar.svg" alt="ícone de calendário"
           class="calendar-icon">
-        <input type="text" id="date" name="date" placeholder="10/04/2026" readonly />
+
+        <input type="text" id="main-date-display" name="date-display" placeholder="10/04/2026" readonly />
+
+        <input type="date" id="main-date-picker" class="input-helper" aria-label="Selecionar data para exibir os agendamentos">
+
         <img src="./assets/icons/arrow-down.svg" alt="ícone de seta para baixo" class="dropdown-icon">
       </div>
     </header>
@@ -163,8 +167,9 @@
             </select>
           </div>
 
-          <label for="date" class="label">Data</label>
+          <label for="date-select" class="label">Data</label>
           <div class="input" id="date-container">
+
             <img src="./assets/icons/Calendar-Minimalistic--Streamline-Solar.svg" alt="ícone de calendário"
               class="input-icon">
             <input type="text" id="date-select" name="date" placeholder="10/04/2026" readonly required>
@@ -174,7 +179,7 @@
 
           <!-- HORÁRIOS (Usando as suas classes de hours) -->
           <label for="hours-select" class="label">Horários Disponíveis</label>
-          <div class="input">
+          <div class="input" id="hours-container">
             <img src="./assets/icons/Clock-Circle--Streamline-Solar.svg" alt="ícone de relógio" class="input-icon">
 
            <select id="hours-select" name="hours" class="select-field" required>

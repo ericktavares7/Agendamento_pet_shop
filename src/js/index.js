@@ -1,89 +1,191 @@
 import '../styles/main.css';
 import dayjs from 'dayjs';
 
-const icons = require.context('../assets/icons', true, /\.svg$/);
-icons.keys().forEach(icons);
+/**
+ * SELETORES — Header (agenda principal)
+ */
+const mainDatePicker = document.getElementById('main-date-picker');
+const mainDateDisplay = document.getElementById('main-date-display');
 
-// Seletores 
-const BtnNovoAgendamento = document.getElementById('new-appointment-btn');
+/**
+ * SELETORES — Modal (novo agendamento)
+ */
+const btnNovoAgendamento = document.getElementById('new-appointment-btn');
 const modalWrapper = document.getElementById('form-wrapper');
-const BtnCancelar = document.getElementById('close-form');
-
-const dateContainer = document.getElementById('date-container');
-const dateSelect = document.getElementById('date-select');
-const hiddenDate = document.getElementById('hidden-date');
-
+const btnCancelar = document.getElementById('close-form');
+const modalDatePicker = document.getElementById('hidden-date');
+const modalDateDisplay = document.getElementById('date-select');
 const hoursSelect = document.getElementById('hours-select');
 
+/**
+ * HELPERS
+ */
 
-hiddenDate.addEventListener('change', () => {
-  const dateValue = hiddenDate.value;
-  if (dateValue) {
-    const [year, month, day] = dateValue.split('-');
-    dateSelect.value = `${day}/${month}/${year}`;
-  }
-});
-
-// Abrir o datepicker ao clicar no container
-dateContainer.addEventListener('click', () => hiddenDate.showPicker());
-
-// Função para carregar os horários disponíveis
-function preencherHorarios() {
-  console.log("Tentando preencher horários...");
-
-  if (!hoursSelect) {
-    console.error("ERRO: O elemento #hours-select não foi encontrado no HTML.");
-    return;
-  }
-
-  const horarios = [
-    '09:00', '10:00', '11:00', '12:00',
-    '13:00', '14:00', '15:00', '16:00',
-    '17:00', '18:00'
-  ];
-
-  // Limpar opções anteriores
-  hoursSelect.innerHTML = '<option value="">Selecione um horário</option>';
-
-  horarios.forEach(horario => {
-    const option = document.createElement('option');
-    option.value = horario;
-    option.textContent = horario;
-    hoursSelect.appendChild(option);
-  });
-
-  console.log("Horários preenchidos com sucesso!");
+// Formata de YYYY-MM-DD para DD/MM/YYYY
+function formatarData(isoString) {
+  return dayjs(isoString).format('DD/MM/YYYY');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    preencherHorarios();
+// Retorna a data de hoje no formato ISO (YYYY-MM-DD)
+function hojeISO() {
+  return dayjs().format('YYYY-MM-DD');
+}
 
-    const hoje = dayjs().format('YYYY-MM-DD');
-    if(dateSelect) dateSelect.placeholder = hoje;
-});
+/**
+ * CALENDÁRIO DO HEADER
+ * Ao mudar a data no picker invisível → atualiza o display visível
+ */
+function inicializarCalendarioHeader() {
+  const mainDateWrapper = document.getElementById('main-date-wrapper');
 
+  if (!mainDateWrapper || !mainDatePicker || !mainDateDisplay) return;
 
+  mainDatePicker.value = hojeISO();
+  mainDateDisplay.value = formatarData(hojeISO());
 
-BtnCancelar.addEventListener('click', () => {
-  modalWrapper.classList.remove('active');
-});
+  // Clique em qualquer parte do wrapper abre o calendário
+  mainDateWrapper.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-BtnNovoAgendamento.addEventListener('click', () => {
-  modalWrapper.classList.add('active');
-});
+    mainDatePicker.style.pointerEvents = 'auto';
 
-// Fechar o modal quando clicar fora do conteúdo
-modalWrapper.addEventListener('click', (e) => {
-  if (e.target === modalWrapper) {
+    try {
+      mainDatePicker.showPicker();
+    } catch (err) {
+      mainDatePicker.click();
+    }
+
+    mainDatePicker.style.pointerEvents = 'none';
+  });
+
+  mainDatePicker.addEventListener('change', () => {
+    if (!mainDatePicker.value) return;
+    const dataFormatada = formatarData(mainDatePicker.value);
+    mainDateDisplay.value = dataFormatada;
+    console.log('📅 Agenda filtrada para:', dataFormatada);
+  });
+}
+
+/**
+ * CALENDÁRIO DO MODAL
+ */
+function inicializarCalendarioModal() {
+  const modalDateWrapper = document.getElementById('date-container');
+
+  if (!modalDateWrapper || !modalDatePicker || !modalDateDisplay) return;
+
+  modalDatePicker.value = hojeISO();
+  modalDateDisplay.value = formatarData(hojeISO());
+
+  // Clique em qualquer parte do wrapper abre o calendário
+  modalDateWrapper.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    modalDatePicker.style.pointerEvents = 'auto';
+
+    try {
+      modalDatePicker.showPicker();
+    } catch (err) {
+      modalDatePicker.click();
+    }
+
+    modalDatePicker.style.pointerEvents = 'none';
+  });
+
+  modalDatePicker.addEventListener('change', () => {
+    if (!modalDatePicker.value) return;
+    const dataFormatada = formatarData(modalDatePicker.value);
+    modalDateDisplay.value = dataFormatada;
+    console.log('📅 Data do agendamento:', dataFormatada);
+  });
+}
+
+/**
+ * MODAL — Abrir / Fechar
+ */
+function inicializarModal() {
+  // Abre ao clicar no botão
+  btnNovoAgendamento?.addEventListener('click', () => {
+    modalWrapper.classList.add('active');
+  });
+
+  // Fecha ao clicar em Cancelar
+  btnCancelar?.addEventListener('click', () => {
     modalWrapper.classList.remove('active');
-  }
+  });
+
+  // Fecha ao clicar no fundo escuro (fora do .form)
+  modalWrapper?.addEventListener('click', (e) => {
+    if (e.target === modalWrapper) {
+      modalWrapper.classList.remove('active');
+    }
+  });
+
+  // Fecha ao pressionar ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      modalWrapper?.classList.remove('active');
+    }
+  });
+}
+
+function inicializarHorariosWrapper() {
+  const hoursContainer = document.getElementById('hours-container');
+
+  if (!hoursContainer || !hoursSelect) return;
+
+  hoursContainer.addEventListener('click', () => {
+    hoursSelect.focus(); // foca no select
+    hoursSelect.click(); // abre o dropdown nativo
+  });
+}
+/**
+ * HORÁRIOS — preenche o select do modal dinamicamente
+ * Separados por período para facilitar validação futura
+ */
+function preencherHorarios() {
+  if (!hoursSelect) return;
+
+  const horarios = [
+    // Manhã
+    { value: '09:00', label: '09:00 — Manhã' },
+    { value: '10:00', label: '10:00 — Manhã' },
+    { value: '11:00', label: '11:00 — Manhã' },
+    // Tarde
+    { value: '13:00', label: '13:00 — Tarde' },
+    { value: '14:00', label: '14:00 — Tarde' },
+    { value: '15:00', label: '15:00 — Tarde' },
+    { value: '16:00', label: '16:00 — Tarde' },
+    { value: '17:00', label: '17:00 — Tarde' },
+    // Noite
+    { value: '18:00', label: '18:00 — Noite' },
+    { value: '19:00', label: '19:00 — Noite' },
+    { value: '20:00', label: '20:00 — Noite' },
+  ];
+
+  // Limpa e reconstrói
+  hoursSelect.innerHTML = '<option value="" disabled selected>Selecione um horário</option>';
+
+  horarios.forEach(({ value, label }) => {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = label;
+    hoursSelect.appendChild(option);
+  });
+}
+
+/**
+ * INICIALIZAÇÃO
+ * Espera o DOM estar pronto antes de rodar tudo
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  inicializarCalendarioHeader();
+  inicializarCalendarioModal();
+  inicializarModal();
+  inicializarHorariosWrapper();
+  preencherHorarios();
+
+  console.log('🐾 PetShop Agenda inicializado!');
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-  const imgLogo = document.querySelector("img.logo");
-
-  if (imgLogo) {
-
-  }
-});
-

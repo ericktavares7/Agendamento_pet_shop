@@ -55,10 +55,6 @@
   border-top: none;
 }
 
-.appointment:hover {
-  background: var(--bg-hover);
-}
-
 .appointment_header {
   display: flex;
   align-items: center;
